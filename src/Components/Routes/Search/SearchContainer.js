@@ -1,5 +1,5 @@
 import React from "react";
-import SearcPresenter from "./SearchPresenter";
+import SearchPresenter from "./SearchPresenter";
 
 export default class extends React.Component {
     state = {
@@ -11,7 +11,7 @@ export default class extends React.Component {
     };
 
     render() {
-        const {movieResult, tvResults, searchTerm, loading, error} = this.state;
+        const {movieResults, tvResults, searchTerm, loading, error} = this.state;
         return (
             <SearchPresenter
                 movieResults={movieResults}
