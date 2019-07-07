@@ -1,5 +1,6 @@
 import React from "react";
 import SearchPresenter from "./SearchPresenter";
+import {moviesApi, tvApi} from "api";
 
 export default class extends React.Component {
     state = {
@@ -10,6 +11,36 @@ export default class extends React.Component {
         error : null
     };
 
+    handleSubmit = () => {
+        const {searchTerm} = this.state;
+        if (searchTerm !== "") {
+            this.seachByTerm();
+        }
+    };
+
+    searchByTerm = async () => {
+        const {searchTerm} = this.state;
+        this.setState({ loading: true });
+        try {
+            const {
+                data: {results: movieResults}
+            } = await moviesApi.search(searchTerm);
+            const {
+                data: {results: tvResults}
+            } = await tvApi.search(searchTerm);
+            this.setState({
+                movieResults,
+                tvResults
+            });
+            this.setState({loadng: true});    
+        } catch {
+            this.setState({ error: "Can't find results"});
+        } finally {
+            this.setState({loading: false});
+        }
+    };
+    //State의 값이 바뀌면(setState) render가 자동실행되어 화면을 갱신해준다
+
     render() {
         const {movieResults, tvResults, searchTerm, loading, error} = this.state;
         return (
@@ -19,6 +50,7 @@ export default class extends React.Component {
                 searchTerm={searchTerm}
                 loading={loading}
                 error={error}
+                handleSubmit={this.handleSubmit}
             />
         );
     }

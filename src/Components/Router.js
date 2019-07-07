@@ -8,6 +8,7 @@ import Home from "Components/Routes/Home";
 import TV from "Components/Routes/TV";
 import Header from "Components/Header";
 import Search from "Components/Routes/Search";
+import Detail from "Components/Routes/Detail";
 
 export default () => (
     <Router>
@@ -15,9 +16,11 @@ export default () => (
         <Header />
         <Switch>
             <Route path="/" exact component={Home}/>
-            <Route path="/tv" exact component={TV}/>
+            <Route path="/tv" component={TV}/>
             <Route path="/tv/popular" render={() => <h1>Popular</h1>}/>
-            <Route path="/search" exact component={Search}/>
+            <Route path="/search" component={Search}/>
+            <Route path="/movie/:id" component={Detail} />
+            <Route path="/show/:id" component={Detail} />
             <Redirect from="*" to="/" />
         </Switch>
         </>
