@@ -15,7 +15,7 @@ export default class extends React.Component {
         event.preventDefault();
         const {searchTerm} = this.state;
         if (searchTerm !== "") {
-            this.seachByTerm();
+            this.searchByTerm();
         }
     };
 
