@@ -11,7 +11,7 @@ export default class extends React.Component {
         error : null
     };
 
-    async ComponentDidMound() {
+    async componentDidMount() {
         try {
             const {
                 data: {results: topRated}
